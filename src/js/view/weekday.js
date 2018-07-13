@@ -38,8 +38,7 @@ function Weekday(options, container) {
         scheduleGutter: 2,
         narrowWeekend: false,
         startDayOfWeek: 0,
-        workweek: false,
-        holidays: []
+        workweek: false
     }, options);
 
     /*
@@ -192,7 +191,7 @@ Weekday.prototype._getDayNameColor = function(theme, day, isToday, isOtherMonth,
     }
 
     if (typeof extra !== 'undefined'
-        && typeof extra.options.holidays !== 'undefined'
+        && typeof extra.options !== 'undefined'
         && extra.options.holidays.indexOf(extra.date) !== -1) {
         color = theme.common.holiday.color;
     }

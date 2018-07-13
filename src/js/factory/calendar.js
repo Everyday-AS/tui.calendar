@@ -366,7 +366,9 @@ Calendar.prototype._initialize = function(options) {
             time: null
         }, util.pick(options, 'template') || {}),
         week: util.extend({}, util.pick(options, 'week') || {}),
-        month: util.extend({}, util.pick(options, 'month') || {}),
+        month: util.extend({
+            holidays: []
+        }, util.pick(options, 'month') || {}),
         calendars: [],
         useCreationPopup: false,
         useDetailPopup: false,
