@@ -179,7 +179,7 @@ Handlebars.registerHelper({
         return [top, left, width, height].join(';');
     },
 
-    'holiday': function(day) {
+    'holiday': function(day, options) {
         var cssClass = '';
 
         if (day === 0) {
@@ -188,6 +188,10 @@ Handlebars.registerHelper({
 
         if (day === 6) {
             cssClass = config.classname('holiday-sat');
+        }
+
+        if (typeof this.date !== 'undefined' && options.holidays.indexOf(this.date) !== -1) {
+            cssClass = config.classname('holiday');
         }
 
         return cssClass;

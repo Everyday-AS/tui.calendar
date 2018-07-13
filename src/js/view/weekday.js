@@ -38,7 +38,8 @@ function Weekday(options, container) {
         scheduleGutter: 2,
         narrowWeekend: false,
         startDayOfWeek: 0,
-        workweek: false
+        workweek: false,
+        holidays: []
     }, options);
 
     /*
@@ -86,6 +87,7 @@ Weekday.prototype.getBaseViewModel = function(viewModel) {
 
     return {
         width: gridWidth,
+        holidays: opt.holidays,
         scheduleHeight: opt.scheduleHeight,
         scheduleBlockHeight: (opt.scheduleHeight + opt.scheduleGutter),
         scheduleBlockGutter: opt.scheduleGutter,
@@ -103,7 +105,10 @@ Weekday.prototype.getBaseViewModel = function(viewModel) {
                 hiddenSchedules: exceedDate[ymd] || 0,
                 width: grids[index] ? grids[index].width : 0,
                 left: grids[index] ? grids[index].left : 0,
-                color: this._getDayNameColor(theme, day, isToday),
+                color: this._getDayNameColor(theme, day, isToday, false, {
+                    date: datetime.format(date, 'YYYY-MM-DD'),
+                    options: opt
+                }),
                 backgroundColor: this._getDayBackgroundColor(theme, day)
             };
         }, this)
@@ -168,9 +173,10 @@ Weekday.prototype._initExceedDate = function(range) {
  * @param {number} day - day number
  * @param {boolean} isToday - today flag
  * @param {boolean} isOtherMonth - not this month flag
+ * @param {Object} extra - extra object
  * @returns {string} style - color style
  */
-Weekday.prototype._getDayNameColor = function(theme, day, isToday, isOtherMonth) {
+Weekday.prototype._getDayNameColor = function(theme, day, isToday, isOtherMonth, extra) {
     var color = '';
 
     if (theme) {
@@ -183,6 +189,12 @@ Weekday.prototype._getDayNameColor = function(theme, day, isToday, isOtherMonth)
         } else {
             color = isOtherMonth ? theme.month.dayExceptThisMonth.color : theme.common.dayname.color;
         }
+    }
+
+    if (typeof extra !== 'undefined'
+        && typeof extra.options.holidays !== 'undefined'
+        && extra.options.holidays.indexOf(extra.date) !== -1) {
+        color = theme.common.holiday.color;
     }
 
     return color;

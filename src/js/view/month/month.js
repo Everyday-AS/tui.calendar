@@ -142,6 +142,7 @@ Month.prototype._renderChildren = function(container, calendar, theme) {
     var startDayOfWeek = opt.startDayOfWeek;
     var visibleWeeksCount = opt.visibleWeeksCount;
     var visibleScheduleCount = opt.visibleScheduleCount;
+    var holidays = opt.holidays;
     var gridOption = opt.grid;
 
     container.innerHTML = '';
@@ -165,6 +166,7 @@ Month.prototype._renderChildren = function(container, calendar, theme) {
             startDayOfWeek: startDayOfWeek,
             visibleWeeksCount: visibleWeeksCount,
             visibleScheduleCount: visibleScheduleCount,
+            holidays: holidays,
             grid: gridOption,
             scheduleHeight: parseInt(theme.month.schedule.height, 10),
             scheduleGutter: parseInt(theme.month.schedule.marginTop, 10)
