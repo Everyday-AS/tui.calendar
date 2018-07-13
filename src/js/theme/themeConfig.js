@@ -157,6 +157,7 @@ var themeConfig = {
     'month.dayExceptThisMonth.color': 'rgba(51, 51, 51, 0.4)',
     'month.weekend.backgroundColor': 'inherit',
     'month.day.fontSize': '14px',
+    'month.day.passed.backgroundColor': '#f5f7f9',
 
     // month schedule style
     'month.schedule.borderRadius': '2px',

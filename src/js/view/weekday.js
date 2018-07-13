@@ -109,7 +109,7 @@ Weekday.prototype.getBaseViewModel = function(viewModel) {
                     date: datetime.format(date, 'YYYY-MM-DD'),
                     options: opt
                 }),
-                backgroundColor: this._getDayBackgroundColor(theme, day)
+                backgroundColor: this._getDayBackgroundColor(theme, day, date)
             };
         }, this)
     };
@@ -204,16 +204,22 @@ Weekday.prototype._getDayNameColor = function(theme, day, isToday, isOtherMonth,
  * Get a day background color
  * @param {Theme} theme - theme instance
  * @param {number} day - day number
+ * @param {Object} date - the current date object
  * @returns {string} style - color style
  */
-Weekday.prototype._getDayBackgroundColor = function(theme, day) {
+Weekday.prototype._getDayBackgroundColor = function(theme, day, date) {
     var color = '';
+    var today = new TZDate();
 
     if (theme) {
         if (day === 0 || day === 6) {
             color = theme.month.weekend.backgroundColor;
         } else {
             color = 'inherit';
+        }
+
+        if (today > date) {
+            color = theme.month.day.passed.backgroundColor;
         }
     }
 
