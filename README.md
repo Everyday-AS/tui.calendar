@@ -282,3 +282,13 @@ You can also see the older versions of API page on the [releases page](https://g
 This software is licensed under the [MIT](https://github.com/nhnent/tui.calendar/blob/master/LICENSE) © [NHN Entertainment](https://github.com/nhnent).
 
 ## Modifications by Everyday AS
+* Previous days can now be coloured by the theme option: `month.day.passed.backgroundColor`
+* Month days can now have custom holidays by the option: 
+
+```
+month: {
+  holidays: [
+    "2018-01-01"
+  ]
+}
+```
