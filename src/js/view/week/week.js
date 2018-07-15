@@ -135,7 +135,8 @@ Week.prototype.render = function() {
         renderEndDate: renderEndDate,
         grids: grids,
         range: range,
-        theme: theme
+        theme: theme,
+        holidays: options.holidays
     };
 
     this.children.each(function(childView) {

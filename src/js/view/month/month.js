@@ -142,7 +142,7 @@ Month.prototype._renderChildren = function(container, calendar, theme) {
     var startDayOfWeek = opt.startDayOfWeek;
     var visibleWeeksCount = opt.visibleWeeksCount;
     var visibleScheduleCount = opt.visibleScheduleCount;
-    var holidays = opt.holidays || [];
+    var holidays = opt.holidays;
     var gridOption = opt.grid;
 
     container.innerHTML = '';

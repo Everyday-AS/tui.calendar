@@ -366,9 +366,7 @@ Calendar.prototype._initialize = function(options) {
             time: null
         }, util.pick(options, 'template') || {}),
         week: util.extend({}, util.pick(options, 'week') || {}),
-        month: util.extend({
-            holidays: []
-        }, util.pick(options, 'month') || {}),
+        month: util.extend({}, util.pick(options, 'month') || {}),
         calendars: [],
         useCreationPopup: false,
         useDetailPopup: false,
@@ -382,12 +380,14 @@ Calendar.prototype._initialize = function(options) {
 
     this._options.week = util.extend({
         startDayOfWeek: 0,
-        workweek: false
+        workweek: false,
+        holidays: []
     }, util.pick(this._options, 'week') || {});
 
     this._options.month = util.extend({
         startDayOfWeek: 0,
         workweek: false,
+        holidays: [],
         scheduleFilter: function(schedule) {
             return Boolean(schedule.isVisible) &&
                 (schedule.category === 'allday' || schedule.category === 'time');

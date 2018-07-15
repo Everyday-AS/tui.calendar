@@ -21,6 +21,11 @@
                 "2018-07-19"
             ]
         },
+        week: {
+            holidays: [
+                "2018-07-19"
+            ]
+        },
         template: {
             milestone: function(model) {
                 return '<span class="calendar-font-icon ic-milestone-b"></span> <span style="background-color: ' + model.bgColor + '">' + model.title + '</span>';

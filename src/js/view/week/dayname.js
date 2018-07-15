@@ -94,7 +94,8 @@ DayName.prototype.render = function(viewModel) {
     var styles = this._getStyles(this.theme);
     var baseViewModel = util.extend({}, {
         dayNames: dayNames,
-        styles: styles
+        styles: styles,
+        holidays: viewModel.holidays
     });
 
     this.container.innerHTML = daynameTmpl(baseViewModel);
