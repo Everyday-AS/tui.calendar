@@ -74,7 +74,10 @@ DayName.prototype._getBaseViewModel = function(start, end, grids) {
             left: grids[i] ? grids[i].left : 0,
             width: grids[i] ? grids[i].width : 0,
             renderDate: datetime.format(d, 'YYYY-MM-DD'),
-            color: this._getDayNameColor(theme, day, isToday, isPastDay)
+            color: this._getDayNameColor(theme, day, isToday, isPastDay, {
+                holidays: this.options.holidays,
+                date: datetime.format(d, 'YYYY-MM-DD')
+            })
         };
     }, this);
 
@@ -107,9 +110,10 @@ DayName.prototype.render = function(viewModel) {
  * @param {number} day - day number
  * @param {boolean} isToday - today flag
  * @param {boolean} isPastDay - is past day flag
+ * @param {Object} extra - extra object
  * @returns {string} style - color style
  */
-DayName.prototype._getDayNameColor = function(theme, day, isToday, isPastDay) {
+DayName.prototype._getDayNameColor = function(theme, day, isToday, isPastDay, extra) {
     var color = '';
 
     if (theme) {
@@ -123,6 +127,11 @@ DayName.prototype._getDayNameColor = function(theme, day, isToday, isPastDay) {
             color = theme.week.today.color || theme.common.today.color;
         } else {
             color = theme.common.dayname.color;
+        }
+
+        if (typeof extra !== 'undefined'
+            && extra.holidays.indexOf(extra.date) !== -1) {
+            color = theme.common.holiday.color;
         }
     }
 

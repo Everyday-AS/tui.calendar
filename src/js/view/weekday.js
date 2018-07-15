@@ -106,7 +106,7 @@ Weekday.prototype.getBaseViewModel = function(viewModel) {
                 left: grids[index] ? grids[index].left : 0,
                 color: this._getDayNameColor(theme, day, isToday, false, {
                     date: datetime.format(date, 'YYYY-MM-DD'),
-                    options: opt
+                    holidays: opt.holidays
                 }),
                 backgroundColor: this._getDayBackgroundColor(theme, day, ymd)
             };
@@ -188,12 +188,11 @@ Weekday.prototype._getDayNameColor = function(theme, day, isToday, isOtherMonth,
         } else {
             color = isOtherMonth ? theme.month.dayExceptThisMonth.color : theme.common.dayname.color;
         }
-    }
 
-    if (typeof extra !== 'undefined'
-        && typeof extra.options !== 'undefined'
-        && extra.options.holidays.indexOf(extra.date) !== -1) {
-        color = theme.common.holiday.color;
+        if (typeof extra !== 'undefined'
+            && extra.holidays.indexOf(extra.date) !== -1) {
+            color = theme.common.holiday.color;
+        }
     }
 
     return color;
